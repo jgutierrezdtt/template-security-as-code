@@ -25,7 +25,7 @@ Equipos de AppSec y DevSecOps que quieran escalar controles de seguridad de form
 
 ## Inicio del tutorial
 
-[![Empezar tutorial](https://img.shields.io/badge/Empezar%20tutorial-0b69ff?style=for-the-badge&logo=github&logoColor=white)](https://github.com/new?template_name=template-security-as-code&template_owner=jgutierrezdtt)
+[![Empezar tutorial](https://img.shields.io/badge/Empezar%20tutorial-0b69ff?style=for-the-badge&logo=github&logoColor=white)](https://github.com/jgutierrezdtt/template-security-as-code/fork)
 
 ## Acceso al repositorio
 
