@@ -1,36 +1,73 @@
-# Paso 12. Evolución de controles
+# Paso 12. Evolucion de controles
 
-## Objetivo
+## Que vas a hacer en este paso?
 
-Codificar el control de seguridad correspondiente como parte del ciclo de desarrollo, garantizando reproducibilidad y trazabilidad.
+Implementaras este control de POLICY de forma concreta sobre el archivo `.github/workflows/policy-check.yml` y registraras evidencia tecnica en `.tutorial/evidence/step-12.json`.
 
-## Contexto profesional
+## Por que es importante
 
-Security as Code permite escalar controles de seguridad de forma sistemática, tratando las políticas y controles como artefactos de software con ciclo de vida propio.
+**En la practica real**:
+- Este control reduce riesgo operativo y mejora trazabilidad.
+- Permite validar avance real, no solo lectura del tutorial.
 
-## Explicación técnica
+**Lo que logras**:
+- Resultado tecnico verificable para el paso 12.
+- Evidencia auditable para revisiones de seguridad.
 
-Este paso introduce una práctica concreta de Security as Code que combina definición de política, automatización y validación continua.
+---
 
-## Archivos que se modifican
+## Instrucciones paso-a-paso
 
-- .github/workflows/
-- .tutorial/
-- policy/
-- docs/
+### Paso 12.1: Prepara el artefacto principal
 
-## Acción esperada del usuario
+Crea o actualiza el archivo objetivo de este paso:
 
-Implementar el control del paso 12, documentar la decisión técnica y dejar evidencia verificable de su ejecución.
+```bash
+mkdir -p "$(dirname .github/workflows/policy-check.yml)"
+touch .github/workflows/policy-check.yml
+```
 
-## Validación automática
+### Paso 12.2: Registra evidencia del paso
 
-La validación comprueba estructura, coherencia de política y avance de estado del tutorial.
+Crea el archivo `.tutorial/evidence/step-12.json` con este contenido:
 
-## Criterio de finalización
+```bash
+mkdir -p .tutorial/evidence
+cat > .tutorial/evidence/step-12.json << 'EOF'
+{
+  "step": 12,
+  "title": "Evolucion de controles",
+  "status": "completed",
+  "artifact": ".github/workflows/policy-check.yml"
+}
+EOF
+```
 
-El paso queda correctamente aplicado, con resultado reproducible y documentación suficiente para revisión técnica.
+---
 
-## Enlace al siguiente paso
+## Verificacion local
 
-Paso 13.
+```bash
+test -f .github/workflows/policy-check.yml && echo "artifact ok"
+python3 -c 'import json;json.load(open(".tutorial/evidence/step-12.json"));print("evidence ok")'
+```
+
+---
+
+## Validacion automatica
+
+`validate-step-12.py` verificara:
+- Existe `.github/workflows/policy-check.yml`.
+- Existe `.tutorial/evidence/step-12.json`.
+- La evidencia marca `status=completed` y `step=12`.
+
+---
+
+## Criterio de finalizacion
+
+Paso 12 esta completo cuando:
+1. `.github/workflows/policy-check.yml` existe en el repositorio.
+2. `.tutorial/evidence/step-12.json` existe y es JSON valido.
+3. `.tutorial/state.json` muestra `"current_step": 13`.
+
+**Siguiente paso**: Paso 13

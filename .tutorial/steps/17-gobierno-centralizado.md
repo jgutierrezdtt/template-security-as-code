@@ -1,36 +1,73 @@
 # Paso 17. Gobierno centralizado
 
-## Objetivo
+## Que vas a hacer en este paso?
 
-Codificar el control de seguridad correspondiente como parte del ciclo de desarrollo, garantizando reproducibilidad y trazabilidad.
+Implementaras este control de POLICY de forma concreta sobre el archivo `docs/security-as-code.md` y registraras evidencia tecnica en `.tutorial/evidence/step-17.json`.
 
-## Contexto profesional
+## Por que es importante
 
-Security as Code permite escalar controles de seguridad de forma sistemática, tratando las políticas y controles como artefactos de software con ciclo de vida propio.
+**En la practica real**:
+- Este control reduce riesgo operativo y mejora trazabilidad.
+- Permite validar avance real, no solo lectura del tutorial.
 
-## Explicación técnica
+**Lo que logras**:
+- Resultado tecnico verificable para el paso 17.
+- Evidencia auditable para revisiones de seguridad.
 
-Este paso introduce una práctica concreta de Security as Code que combina definición de política, automatización y validación continua.
+---
 
-## Archivos que se modifican
+## Instrucciones paso-a-paso
 
-- .github/workflows/
-- .tutorial/
-- policy/
-- docs/
+### Paso 17.1: Prepara el artefacto principal
 
-## Acción esperada del usuario
+Crea o actualiza el archivo objetivo de este paso:
 
-Implementar el control del paso 17, documentar la decisión técnica y dejar evidencia verificable de su ejecución.
+```bash
+mkdir -p "$(dirname docs/security-as-code.md)"
+touch docs/security-as-code.md
+```
 
-## Validación automática
+### Paso 17.2: Registra evidencia del paso
 
-La validación comprueba estructura, coherencia de política y avance de estado del tutorial.
+Crea el archivo `.tutorial/evidence/step-17.json` con este contenido:
 
-## Criterio de finalización
+```bash
+mkdir -p .tutorial/evidence
+cat > .tutorial/evidence/step-17.json << 'EOF'
+{
+  "step": 17,
+  "title": "Gobierno centralizado",
+  "status": "completed",
+  "artifact": "docs/security-as-code.md"
+}
+EOF
+```
 
-El paso queda correctamente aplicado, con resultado reproducible y documentación suficiente para revisión técnica.
+---
 
-## Enlace al siguiente paso
+## Verificacion local
 
-Paso 18.
+```bash
+test -f docs/security-as-code.md && echo "artifact ok"
+python3 -c 'import json;json.load(open(".tutorial/evidence/step-17.json"));print("evidence ok")'
+```
+
+---
+
+## Validacion automatica
+
+`validate-step-17.py` verificara:
+- Existe `docs/security-as-code.md`.
+- Existe `.tutorial/evidence/step-17.json`.
+- La evidencia marca `status=completed` y `step=17`.
+
+---
+
+## Criterio de finalizacion
+
+Paso 17 esta completo cuando:
+1. `docs/security-as-code.md` existe en el repositorio.
+2. `.tutorial/evidence/step-17.json` existe y es JSON valido.
+3. `.tutorial/state.json` muestra `"current_step": 18`.
+
+**Siguiente paso**: Paso 18

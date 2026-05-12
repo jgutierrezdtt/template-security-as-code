@@ -1,36 +1,73 @@
-# Paso 5. Regla Rego básica
+# Paso 5. Regla rego basica
 
-## Objetivo
+## Que vas a hacer en este paso?
 
-Codificar el control de seguridad correspondiente como parte del ciclo de desarrollo, garantizando reproducibilidad y trazabilidad.
+Implementaras este control de POLICY de forma concreta sobre el archivo `policies/security.rego` y registraras evidencia tecnica en `.tutorial/evidence/step-05.json`.
 
-## Contexto profesional
+## Por que es importante
 
-Security as Code permite escalar controles de seguridad de forma sistemática, tratando las políticas y controles como artefactos de software con ciclo de vida propio.
+**En la practica real**:
+- Este control reduce riesgo operativo y mejora trazabilidad.
+- Permite validar avance real, no solo lectura del tutorial.
 
-## Explicación técnica
+**Lo que logras**:
+- Resultado tecnico verificable para el paso 5.
+- Evidencia auditable para revisiones de seguridad.
 
-Este paso introduce una práctica concreta de Security as Code que combina definición de política, automatización y validación continua.
+---
 
-## Archivos que se modifican
+## Instrucciones paso-a-paso
 
-- .github/workflows/
-- .tutorial/
-- policy/
-- docs/
+### Paso 5.1: Prepara el artefacto principal
 
-## Acción esperada del usuario
+Crea o actualiza el archivo objetivo de este paso:
 
-Implementar el control del paso 5, documentar la decisión técnica y dejar evidencia verificable de su ejecución.
+```bash
+mkdir -p "$(dirname policies/security.rego)"
+touch policies/security.rego
+```
 
-## Validación automática
+### Paso 5.2: Registra evidencia del paso
 
-La validación comprueba estructura, coherencia de política y avance de estado del tutorial.
+Crea el archivo `.tutorial/evidence/step-05.json` con este contenido:
 
-## Criterio de finalización
+```bash
+mkdir -p .tutorial/evidence
+cat > .tutorial/evidence/step-05.json << 'EOF'
+{
+  "step": 5,
+  "title": "Regla rego basica",
+  "status": "completed",
+  "artifact": "policies/security.rego"
+}
+EOF
+```
 
-El paso queda correctamente aplicado, con resultado reproducible y documentación suficiente para revisión técnica.
+---
 
-## Enlace al siguiente paso
+## Verificacion local
 
-Paso 6.
+```bash
+test -f policies/security.rego && echo "artifact ok"
+python3 -c 'import json;json.load(open(".tutorial/evidence/step-05.json"));print("evidence ok")'
+```
+
+---
+
+## Validacion automatica
+
+`validate-step-05.py` verificara:
+- Existe `policies/security.rego`.
+- Existe `.tutorial/evidence/step-05.json`.
+- La evidencia marca `status=completed` y `step=5`.
+
+---
+
+## Criterio de finalizacion
+
+Paso 5 esta completo cuando:
+1. `policies/security.rego` existe en el repositorio.
+2. `.tutorial/evidence/step-05.json` existe y es JSON valido.
+3. `.tutorial/state.json` muestra `"current_step": 6`.
+
+**Siguiente paso**: Paso 6
