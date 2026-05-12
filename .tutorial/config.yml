@@ -1,0 +1,6 @@
+tutorial:
+  name: Security as Code
+  level: advanced
+  total_steps: 20
+  default_language: es
+  base_repository: jgutierrezdtt/security-tutorial-base
