@@ -2,34 +2,43 @@
 
 ## Objetivo de aprendizaje
 
-En este paso vas a practicar un control de Security as Code para entender que decision de configuracion aplicar y por que.
+Codificar una política que pueda evaluarse automáticamente en CI.
 
-## Que debe hacer la persona participante
+## Archivo y seccion que debes modificar
 
-1. Revisar el contexto del control en este paso.
-2. Editar la configuracion esperada en `policies/security.rego`.
-3. Guardar y subir el cambio en el flujo normal del repositorio (commit/push o PR).
+- Archivo objetivo: `policies/security.rego`.
+- Seccion donde aplicar el cambio: reglas OPA/Rego del control.
+- Resultado esperado: el repositorio incorpora el control de este paso de forma legible y revisable.
 
-## Que configurar exactamente
+## Cambio que debes introducir
 
-- Campo o seccion objetivo: relacionado con "Regla rego con contexto".
-- Ubicacion principal: `policies/security.rego`.
-- Resultado esperado: que la configuracion refleje el control del paso 6.
+Copia este bloque como base y adáptalo al contexto real del repositorio:
 
-## Checklist de configuracion
+```rego
+package security
 
-- El cambio del paso 6 esta presente en `policies/security.rego`.
-- El cambio es coherente con el objetivo del paso.
-- El repositorio incluye la evidencia de progreso para este paso.
+deny[msg] {
+  input.resource.public == true
+  msg := "Recurso publico no permitido"
+}
+```
 
-## Validacion automatica (sin ejecucion manual)
+## Como adaptarlo correctamente
 
-- `validate-steps.yml` se ejecuta automaticamente por eventos `push`, `pull_request` y `workflow_dispatch`.
-- `scripts/validate-step-06.py` valida que el control de este paso esta aplicado.
-- El estado de progreso se refleja en `.tutorial/state.json`.
+- Haz que el mensaje de deny explique claramente la infracción.
+- Si el paso es con contexto, añade condiciones adicionales sobre labels, owner o entorno.
+
+## Que valida el workflow automaticamente
+
+- `validate-steps.yml` se ejecuta con `push`, `pull_request` y `workflow_dispatch`.
+- `scripts/validate-step-06.py` comprueba el archivo y los marcadores esperados de este paso.
+- Debe encontrar el marcador `package security` en `policies/security.rego`.
+- Debe encontrar el marcador `deny[msg]` en `policies/security.rego`.
+- Debe encontrar el marcador `input.resource.public == true` en `policies/security.rego`.
+- Debe encontrar el marcador `Recurso publico no permitido` en `policies/security.rego`.
 
 ## Criterio de finalizacion
 
-El paso 6 se marca como completado cuando GitHub Actions reporta exito para `validate-step-06.py`.
+El paso 6 queda completado cuando el workflow de GitHub Actions valida este cambio sin errores.
 
 Siguiente paso: Paso 7.

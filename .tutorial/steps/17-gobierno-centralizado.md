@@ -2,34 +2,41 @@
 
 ## Objetivo de aprendizaje
 
-En este paso vas a practicar un control de Security as Code para entender que decision de configuracion aplicar y por que.
+Explicar cómo evoluciona y gobierna el conjunto de controles codificados.
 
-## Que debe hacer la persona participante
+## Archivo y seccion que debes modificar
 
-1. Revisar el contexto del control en este paso.
-2. Editar la configuracion esperada en `.github/workflows/policy-check.yml`.
-3. Guardar y subir el cambio en el flujo normal del repositorio (commit/push o PR).
+- Archivo objetivo: `docs/security-as-code.md`.
+- Seccion donde aplicar el cambio: documentación operativa del programa.
+- Resultado esperado: el repositorio incorpora el control de este paso de forma legible y revisable.
 
-## Que configurar exactamente
+## Cambio que debes introducir
 
-- Campo o seccion objetivo: relacionado con "Gobierno centralizado".
-- Ubicacion principal: `.github/workflows/policy-check.yml`.
-- Resultado esperado: que la configuracion refleje el control del paso 17.
+Copia este bloque como base y adáptalo al contexto real del repositorio:
 
-## Checklist de configuracion
+```markdown
+## Inventario de controles
+## Cobertura actual
+## Excepciones activas
+## Siguiente iteracion
+```
 
-- El cambio del paso 17 esta presente en `.github/workflows/policy-check.yml`.
-- El cambio es coherente con el objetivo del paso.
-- El repositorio incluye la evidencia de progreso para este paso.
+## Como adaptarlo correctamente
 
-## Validacion automatica (sin ejecucion manual)
+- Usa esta documentación para mostrar qué controles ya están codificados y cuáles faltan.
+- Relaciona cada control con su política o workflow asociado.
 
-- `validate-steps.yml` se ejecuta automaticamente por eventos `push`, `pull_request` y `workflow_dispatch`.
-- `scripts/validate-step-17.py` valida que el control de este paso esta aplicado.
-- El estado de progreso se refleja en `.tutorial/state.json`.
+## Que valida el workflow automaticamente
+
+- `validate-steps.yml` se ejecuta con `push`, `pull_request` y `workflow_dispatch`.
+- `scripts/validate-step-17.py` comprueba el archivo y los marcadores esperados de este paso.
+- Debe encontrar el marcador `## Inventario de controles` en `docs/security-as-code.md`.
+- Debe encontrar el marcador `## Cobertura actual` en `docs/security-as-code.md`.
+- Debe encontrar el marcador `## Excepciones activas` en `docs/security-as-code.md`.
+- Debe encontrar el marcador `## Siguiente iteracion` en `docs/security-as-code.md`.
 
 ## Criterio de finalizacion
 
-El paso 17 se marca como completado cuando GitHub Actions reporta exito para `validate-step-17.py`.
+El paso 17 queda completado cuando el workflow de GitHub Actions valida este cambio sin errores.
 
 Siguiente paso: Paso 18.

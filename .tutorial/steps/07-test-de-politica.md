@@ -2,34 +2,40 @@
 
 ## Objetivo de aprendizaje
 
-En este paso vas a practicar un control de Security as Code para entender que decision de configuracion aplicar y por que.
+Probar la política para evitar regresiones al evolucionarla.
 
-## Que debe hacer la persona participante
+## Archivo y seccion que debes modificar
 
-1. Revisar el contexto del control en este paso.
-2. Editar la configuracion esperada en `policies/security.rego`.
-3. Guardar y subir el cambio en el flujo normal del repositorio (commit/push o PR).
+- Archivo objetivo: `policies/security_test.rego`.
+- Seccion donde aplicar el cambio: pruebas automatizadas de la politica.
+- Resultado esperado: el repositorio incorpora el control de este paso de forma legible y revisable.
 
-## Que configurar exactamente
+## Cambio que debes introducir
 
-- Campo o seccion objetivo: relacionado con "Test de politica".
-- Ubicacion principal: `policies/security.rego`.
-- Resultado esperado: que la configuracion refleje el control del paso 7.
+Copia este bloque como base y adáptalo al contexto real del repositorio:
 
-## Checklist de configuracion
+```rego
+package security_test
 
-- El cambio del paso 7 esta presente en `policies/security.rego`.
-- El cambio es coherente con el objetivo del paso.
-- El repositorio incluye la evidencia de progreso para este paso.
+test_public_resource_denied {
+  deny with input as {"resource": {"public": true}}
+}
+```
 
-## Validacion automatica (sin ejecucion manual)
+## Como adaptarlo correctamente
 
-- `validate-steps.yml` se ejecuta automaticamente por eventos `push`, `pull_request` y `workflow_dispatch`.
-- `scripts/validate-step-07.py` valida que el control de este paso esta aplicado.
-- El estado de progreso se refleja en `.tutorial/state.json`.
+- Incluye al menos un caso permitido y uno denegado.
+- Mantén los tests cortos y vinculados a una regla concreta.
+
+## Que valida el workflow automaticamente
+
+- `validate-steps.yml` se ejecuta con `push`, `pull_request` y `workflow_dispatch`.
+- `scripts/validate-step-07.py` comprueba el archivo y los marcadores esperados de este paso.
+- Debe encontrar el marcador `package security_test` en `policies/security_test.rego`.
+- Debe encontrar el marcador `test_public_resource_denied` en `policies/security_test.rego`.
 
 ## Criterio de finalizacion
 
-El paso 7 se marca como completado cuando GitHub Actions reporta exito para `validate-step-07.py`.
+El paso 7 queda completado cuando el workflow de GitHub Actions valida este cambio sin errores.
 
 Siguiente paso: Paso 8.
