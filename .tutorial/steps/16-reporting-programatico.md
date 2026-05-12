@@ -2,17 +2,21 @@
 
 ## Objetivo de aprendizaje
 
-Explicar cómo evoluciona y gobierna el conjunto de controles codificados.
+Este paso introduce un control de Security as Code y debe dejar un cambio comprensible en docs/security-as-code.md.
+
+## Que vas a cambiar y por que
+
+Actualiza docs/security-as-code.md para que el control de "reporting programatico" quede explícito y revisable.
 
 ## Archivo y seccion que debes modificar
 
 - Archivo objetivo: `docs/security-as-code.md`.
-- Seccion donde aplicar el cambio: documentación operativa del programa.
-- Resultado esperado: el repositorio incorpora el control de este paso de forma legible y revisable.
+- Aplícalo en la parte del archivo que corresponde al título del paso.
+- Si el archivo aún no existe, créalo con este contenido inicial y luego evoluciona desde ahí en los siguientes pasos.
 
-## Cambio que debes introducir
+## Cambio base recomendado
 
-Copia este bloque como base y adáptalo al contexto real del repositorio:
+Este bloque no es para pegar a ciegas: úsalo como punto de partida y ajústalo al contexto del repositorio.
 
 ```markdown
 ## Inventario de controles
@@ -23,17 +27,24 @@ Copia este bloque como base y adáptalo al contexto real del repositorio:
 
 ## Como adaptarlo correctamente
 
-- Usa esta documentación para mostrar qué controles ya están codificados y cuáles faltan.
-- Relaciona cada control con su política o workflow asociado.
+- Mantén el cambio pequeño y centrado en una sola idea por paso.
+- Usa nombres claros para secciones, reglas o jobs.
+- Evita añadir configuración que no esté relacionada con el objetivo del paso.
+
+## Que deberia verse al terminar
+
+- La intención del cambio se entiende leyendo el archivo.
+- El archivo muestra el control sin depender de comentarios ambiguos.
+- Los marcadores esperados del paso aparecen de forma natural en la configuración.
 
 ## Que valida el workflow automaticamente
 
 - `validate-steps.yml` se ejecuta con `push`, `pull_request` y `workflow_dispatch`.
-- `scripts/validate-step-16.py` comprueba el archivo y los marcadores esperados de este paso.
-- Debe encontrar el marcador `## Inventario de controles` en `docs/security-as-code.md`.
-- Debe encontrar el marcador `## Cobertura actual` en `docs/security-as-code.md`.
-- Debe encontrar el marcador `## Excepciones activas` en `docs/security-as-code.md`.
-- Debe encontrar el marcador `## Siguiente iteracion` en `docs/security-as-code.md`.
+- `scripts/validate-step-16.py` comprueba este paso contra el archivo configurado.
+- El workflow busca `## Inventario de controles` dentro de `docs/security-as-code.md`.
+- El workflow busca `## Cobertura actual` dentro de `docs/security-as-code.md`.
+- El workflow busca `## Excepciones activas` dentro de `docs/security-as-code.md`.
+- El workflow busca `## Siguiente iteracion` dentro de `docs/security-as-code.md`.
 
 ## Criterio de finalizacion
 
