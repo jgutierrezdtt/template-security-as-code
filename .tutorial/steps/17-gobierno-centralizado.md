@@ -1,73 +1,23 @@
 # Paso 17. Gobierno centralizado
 
-## Que vas a hacer en este paso?
+## Que hace este paso automaticamente
 
-Implementaras este control de POLICY de forma concreta sobre el archivo `docs/security-as-code.md` y registraras evidencia tecnica en `.tutorial/evidence/step-17.json`.
+Este paso se valida de forma automatica en el pipeline de Security as Code. No requiere ejecucion manual de comandos por parte del usuario.
 
-## Por que es importante
+## Como se ejecuta
 
-**En la practica real**:
-- Este control reduce riesgo operativo y mejora trazabilidad.
-- Permite validar avance real, no solo lectura del tutorial.
+- El workflow `validate-steps.yml` se dispara por evento `push`, `pull_request` y `workflow_dispatch`.
+- El validador `scripts/validate-step-17.py` comprueba el estado esperado para este paso.
+- Si la validacion pasa, el estado del tutorial se refleja en `.tutorial/state.json`.
 
-**Lo que logras**:
-- Resultado tecnico verificable para el paso 17.
-- Evidencia auditable para revisiones de seguridad.
+## Evidencia tecnica evaluada por el sistema
 
----
+- Artefacto principal esperado: `.github/workflows/policy-check.yml`.
+- Estado del paso en evidencia automatica: `.tutorial/evidence/step-17.json`.
+- Coherencia de progresion en: `.tutorial/state.json`.
 
-## Instrucciones paso-a-paso
+## Criterio de finalizacion automatica
 
-### Paso 17.1: Prepara el artefacto principal
+El paso 17 queda completado cuando el workflow reporta exito para `validate-step-17.py` en GitHub Actions.
 
-Crea o actualiza el archivo objetivo de este paso:
-
-```bash
-mkdir -p "$(dirname docs/security-as-code.md)"
-touch docs/security-as-code.md
-```
-
-### Paso 17.2: Registra evidencia del paso
-
-Crea el archivo `.tutorial/evidence/step-17.json` con este contenido:
-
-```bash
-mkdir -p .tutorial/evidence
-cat > .tutorial/evidence/step-17.json << 'EOF'
-{
-  "step": 17,
-  "title": "Gobierno centralizado",
-  "status": "completed",
-  "artifact": "docs/security-as-code.md"
-}
-EOF
-```
-
----
-
-## Verificacion local
-
-```bash
-test -f docs/security-as-code.md && echo "artifact ok"
-python3 -c 'import json;json.load(open(".tutorial/evidence/step-17.json"));print("evidence ok")'
-```
-
----
-
-## Validacion automatica
-
-`validate-step-17.py` verificara:
-- Existe `docs/security-as-code.md`.
-- Existe `.tutorial/evidence/step-17.json`.
-- La evidencia marca `status=completed` y `step=17`.
-
----
-
-## Criterio de finalizacion
-
-Paso 17 esta completo cuando:
-1. `docs/security-as-code.md` existe en el repositorio.
-2. `.tutorial/evidence/step-17.json` existe y es JSON valido.
-3. `.tutorial/state.json` muestra `"current_step": 18`.
-
-**Siguiente paso**: Paso 18
+Siguiente paso automatico: Paso 18.

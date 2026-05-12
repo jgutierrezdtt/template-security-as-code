@@ -1,73 +1,23 @@
 # Paso 11. Inventario de controles
 
-## Que vas a hacer en este paso?
+## Que hace este paso automaticamente
 
-Implementaras este control de POLICY de forma concreta sobre el archivo `.github/workflows/policy-check.yml` y registraras evidencia tecnica en `.tutorial/evidence/step-11.json`.
+Este paso se valida de forma automatica en el pipeline de Security as Code. No requiere ejecucion manual de comandos por parte del usuario.
 
-## Por que es importante
+## Como se ejecuta
 
-**En la practica real**:
-- Este control reduce riesgo operativo y mejora trazabilidad.
-- Permite validar avance real, no solo lectura del tutorial.
+- El workflow `validate-steps.yml` se dispara por evento `push`, `pull_request` y `workflow_dispatch`.
+- El validador `scripts/validate-step-11.py` comprueba el estado esperado para este paso.
+- Si la validacion pasa, el estado del tutorial se refleja en `.tutorial/state.json`.
 
-**Lo que logras**:
-- Resultado tecnico verificable para el paso 11.
-- Evidencia auditable para revisiones de seguridad.
+## Evidencia tecnica evaluada por el sistema
 
----
+- Artefacto principal esperado: `policies/security.rego`.
+- Estado del paso en evidencia automatica: `.tutorial/evidence/step-11.json`.
+- Coherencia de progresion en: `.tutorial/state.json`.
 
-## Instrucciones paso-a-paso
+## Criterio de finalizacion automatica
 
-### Paso 11.1: Prepara el artefacto principal
+El paso 11 queda completado cuando el workflow reporta exito para `validate-step-11.py` en GitHub Actions.
 
-Crea o actualiza el archivo objetivo de este paso:
-
-```bash
-mkdir -p "$(dirname .github/workflows/policy-check.yml)"
-touch .github/workflows/policy-check.yml
-```
-
-### Paso 11.2: Registra evidencia del paso
-
-Crea el archivo `.tutorial/evidence/step-11.json` con este contenido:
-
-```bash
-mkdir -p .tutorial/evidence
-cat > .tutorial/evidence/step-11.json << 'EOF'
-{
-  "step": 11,
-  "title": "Inventario de controles",
-  "status": "completed",
-  "artifact": ".github/workflows/policy-check.yml"
-}
-EOF
-```
-
----
-
-## Verificacion local
-
-```bash
-test -f .github/workflows/policy-check.yml && echo "artifact ok"
-python3 -c 'import json;json.load(open(".tutorial/evidence/step-11.json"));print("evidence ok")'
-```
-
----
-
-## Validacion automatica
-
-`validate-step-11.py` verificara:
-- Existe `.github/workflows/policy-check.yml`.
-- Existe `.tutorial/evidence/step-11.json`.
-- La evidencia marca `status=completed` y `step=11`.
-
----
-
-## Criterio de finalizacion
-
-Paso 11 esta completo cuando:
-1. `.github/workflows/policy-check.yml` existe en el repositorio.
-2. `.tutorial/evidence/step-11.json` existe y es JSON valido.
-3. `.tutorial/state.json` muestra `"current_step": 12`.
-
-**Siguiente paso**: Paso 12
+Siguiente paso automatico: Paso 12.
