@@ -2,11 +2,11 @@
 
 ## Objetivo de aprendizaje
 
-Este paso introduce un control de Security as Code y debe dejar un cambio comprensible en docs/policy-exceptions.yml.
+Este paso introduce la trazabilidad de excepciones y debe dejar un cambio comprensible en `docs/policy-exceptions.yml`.
 
 ## Que vas a cambiar y por que
 
-Actualiza docs/policy-exceptions.yml para que el control de "excepcion con trazabilidad" quede explícito y revisable.
+En este paso sigues trabajando sobre `docs/policy-exceptions.yml`, pero ahora con un objetivo más maduro: que la excepción no sea solo interpretable por código, sino también rastreable por personas y proceso. La trazabilidad aparece cuando la excepción deja clara la política afectada, el alcance concreto, el motivo y la fecha de revisión.
 
 ## Archivo y seccion que debes modificar
 
@@ -20,16 +20,17 @@ Este bloque no es para pegar a ciegas: úsalo como punto de partida y ajústalo 
 
 ```yaml
 exceptions:
-policy:
-scope:
-reason:
-expires_on:
+  - policy: deny_public_resource
+    scope: resource/demo-public-bucket
+    reason: "Excepcion temporal documentada para caso legado identificado"
+    expires_on: "2026-12-31"
 ```
 
 ## Como adaptarlo correctamente
 
 - Mantén el cambio pequeño y centrado en una sola idea por paso.
-- Usa nombres claros para secciones, reglas o jobs.
+- Redacta `reason` de forma que otra persona pueda revisar si la excepción sigue siendo válida.
+- Usa `scope` para evitar excepciones demasiado amplias que nadie pueda cerrar después.
 - Evita añadir configuración que no esté relacionada con el objetivo del paso.
 
 ## Que deberia verse al terminar
@@ -37,6 +38,7 @@ expires_on:
 - La intención del cambio se entiende leyendo el archivo.
 - El archivo muestra el control sin depender de comentarios ambiguos.
 - Los marcadores esperados del paso aparecen de forma natural en la configuración.
+- La excepción ya parece un elemento revisable del programa y no una nota olvidada.
 
 ## Que valida el workflow automaticamente
 
