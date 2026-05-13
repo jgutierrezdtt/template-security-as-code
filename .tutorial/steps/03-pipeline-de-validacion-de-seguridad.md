@@ -2,11 +2,11 @@
 
 ## Objetivo de aprendizaje
 
-Este paso introduce un control de Security as Code y debe dejar un cambio comprensible en .github/workflows/policy-check.yml.
+Este paso introduce el pipeline de validación de seguridad y debe dejar un cambio comprensible en `.github/workflows/policy-check.yml`.
 
 ## Que vas a cambiar y por que
 
-Actualiza .github/workflows/policy-check.yml para que el control de "pipeline de validacion de seguridad" quede explícito y revisable.
+En este paso vas a definir `.github/workflows/policy-check.yml` para que las políticas no vivan solo en el repositorio, sino también en la ruta normal de cambios. El valor del pipeline está en convertir una política escrita en una validación repetible sobre `push` y `pull_request`.
 
 ## Archivo y seccion que debes modificar
 
@@ -20,15 +20,18 @@ Este bloque no es para pegar a ciegas: úsalo como punto de partida y ajústalo 
 
 ```yaml
 name: Policy Check
+on:
 pull_request:
 push:
-opa:
+jobs:
+  opa:
 ```
 
 ## Como adaptarlo correctamente
 
 - Mantén el cambio pequeño y centrado en una sola idea por paso.
-- Usa nombres claros para secciones, reglas o jobs.
+- Haz visible el job `opa` para que se entienda qué parte del workflow evalúa la política.
+- Usa `push` y `pull_request` como señal de que el control ya vive en el flujo real del repositorio.
 - Evita añadir configuración que no esté relacionada con el objetivo del paso.
 
 ## Que deberia verse al terminar
@@ -36,6 +39,7 @@ opa:
 - La intención del cambio se entiende leyendo el archivo.
 - El archivo muestra el control sin depender de comentarios ambiguos.
 - Los marcadores esperados del paso aparecen de forma natural en la configuración.
+- Se reconoce una automatización mínima para validar políticas en el ciclo de desarrollo.
 
 ## Que valida el workflow automaticamente
 
