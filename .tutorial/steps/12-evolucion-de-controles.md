@@ -2,11 +2,11 @@
 
 ## Objetivo de aprendizaje
 
-Este paso introduce un control de Security as Code y debe dejar un cambio comprensible en docs/security-as-code.md.
+Este paso introduce la evolución de controles y debe dejar un cambio comprensible en `docs/security-as-code.md`.
 
 ## Que vas a cambiar y por que
 
-Actualiza docs/security-as-code.md para que el control de "evolucion de controles" quede explícito y revisable.
+En este paso vuelves a trabajar sobre `docs/security-as-code.md`, pero con una intención distinta: usar el documento para mostrar cómo madura el programa. No basta con saber qué controles existen hoy; también importa dejar claro qué cobertura falta, qué excepciones condicionan el estado actual y cuál es la siguiente iteración prioritaria.
 
 ## Archivo y seccion que debes modificar
 
@@ -28,7 +28,8 @@ Este bloque no es para pegar a ciegas: úsalo como punto de partida y ajústalo 
 ## Como adaptarlo correctamente
 
 - Mantén el cambio pequeño y centrado en una sola idea por paso.
-- Usa nombres claros para secciones, reglas o jobs.
+- Usa `## Siguiente iteracion` como punto de planificación y no como frase genérica de cierre.
+- Haz que `## Cobertura actual` y `## Excepciones activas` expliquen por qué ciertos controles aún no están cerrados.
 - Evita añadir configuración que no esté relacionada con el objetivo del paso.
 
 ## Que deberia verse al terminar
@@ -36,6 +37,7 @@ Este bloque no es para pegar a ciegas: úsalo como punto de partida y ajústalo 
 - La intención del cambio se entiende leyendo el archivo.
 - El archivo muestra el control sin depender de comentarios ambiguos.
 - Los marcadores esperados del paso aparecen de forma natural en la configuración.
+- El documento ya sirve para hablar de evolución del programa y no solo de su estado actual.
 
 ## Que valida el workflow automaticamente
 
