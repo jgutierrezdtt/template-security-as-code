@@ -2,11 +2,11 @@
 
 ## Objetivo de aprendizaje
 
-Este paso introduce un control de Security as Code y debe dejar un cambio comprensible en docs/policy-exceptions.yml.
+Este paso introduce la caducidad de excepciones y debe dejar un cambio comprensible en `docs/policy-exceptions.yml`.
 
 ## Que vas a cambiar y por que
 
-Actualiza docs/policy-exceptions.yml para que el control de "excepcion con caducidad" quede explícito y revisable.
+En este paso vas a reforzar `docs/policy-exceptions.yml` para que una excepción nazca con fecha de salida y no como permiso indefinido. La caducidad importa porque obliga a revisar si el riesgo sigue estando justificado o si la remediación ya debería haberse completado.
 
 ## Archivo y seccion que debes modificar
 
@@ -20,16 +20,17 @@ Este bloque no es para pegar a ciegas: úsalo como punto de partida y ajústalo 
 
 ```yaml
 exceptions:
-policy:
-scope:
-reason:
-expires_on:
+  - policy: deny_public_resource
+    scope: resource/demo-public-bucket
+    reason: "Excepcion temporal durante ventana de remediacion aprobada"
+    expires_on: "2026-12-31"
 ```
 
 ## Como adaptarlo correctamente
 
 - Mantén el cambio pequeño y centrado en una sola idea por paso.
-- Usa nombres claros para secciones, reglas o jobs.
+- Usa `expires_on` como fecha de revisión real y no como relleno simbólico.
+- Haz que el `reason` explique por qué la excepción necesita tiempo limitado y qué debería ocurrir antes de su vencimiento.
 - Evita añadir configuración que no esté relacionada con el objetivo del paso.
 
 ## Que deberia verse al terminar
@@ -37,6 +38,7 @@ expires_on:
 - La intención del cambio se entiende leyendo el archivo.
 - El archivo muestra el control sin depender de comentarios ambiguos.
 - Los marcadores esperados del paso aparecen de forma natural en la configuración.
+- La excepción ya tiene una salida prevista y no solo una aceptación abierta de riesgo.
 
 ## Que valida el workflow automaticamente
 
