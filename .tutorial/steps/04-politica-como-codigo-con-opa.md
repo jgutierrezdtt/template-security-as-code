@@ -2,11 +2,11 @@
 
 ## Objetivo de aprendizaje
 
-Este paso introduce un control de Security as Code y debe dejar un cambio comprensible en policies/security.rego.
+Este paso introduce la idea de política como código con OPA y debe dejar un cambio comprensible en `policies/security.rego`.
 
 ## Que vas a cambiar y por que
 
-Actualiza policies/security.rego para que el control de "politica como codigo con opa" quede explícito y revisable.
+En este paso vas a trabajar sobre `policies/security.rego` para que la política no sea solo documentación, sino una regla evaluable por OPA. El ejemplo sigue siendo deliberadamente simple: negar recursos públicos. Lo importante aquí es que el criterio de seguridad ya vive como lógica ejecutable.
 
 ## Archivo y seccion que debes modificar
 
@@ -20,12 +20,18 @@ Este bloque no es para pegar a ciegas: úsalo como punto de partida y ajústalo 
 
 ```rego
 package security
+
+deny[msg] {
+  input.resource.public == true
+  msg := "Recurso publico no permitido"
+}
 ```
 
 ## Como adaptarlo correctamente
 
 - Mantén el cambio pequeño y centrado en una sola idea por paso.
-- Usa nombres claros para secciones, reglas o jobs.
+- Usa `deny[msg]` para expresar una política que devuelve decisiones legibles.
+- Haz que la condición y el mensaje estén alineados: qué se prohíbe y por qué se rechaza.
 - Evita añadir configuración que no esté relacionada con el objetivo del paso.
 
 ## Que deberia verse al terminar
@@ -33,12 +39,16 @@ package security
 - La intención del cambio se entiende leyendo el archivo.
 - El archivo muestra el control sin depender de comentarios ambiguos.
 - Los marcadores esperados del paso aparecen de forma natural en la configuración.
+- OPA ya tiene una política concreta que puede evaluar sobre una entrada sencilla.
 
 ## Que valida el workflow automaticamente
 
 - `validate-steps.yml` se ejecuta con `push`, `pull_request` y `workflow_dispatch`.
 - `scripts/validate-step-04.py` comprueba este paso contra el archivo configurado.
 - El workflow busca `package security` dentro de `policies/security.rego`.
+- El workflow busca `deny[msg]` dentro de `policies/security.rego`.
+- El workflow busca `input.resource.public == true` dentro de `policies/security.rego`.
+- El workflow busca `Recurso publico no permitido` dentro de `policies/security.rego`.
 
 ## Criterio de finalizacion
 
