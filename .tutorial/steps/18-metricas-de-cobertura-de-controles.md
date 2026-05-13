@@ -2,11 +2,11 @@
 
 ## Objetivo de aprendizaje
 
-Este paso introduce un control de Security as Code y debe dejar un cambio comprensible en docs/security-as-code.md.
+Este paso introduce métricas de cobertura de controles y debe dejar un cambio comprensible en `docs/security-as-code.md`.
 
 ## Que vas a cambiar y por que
 
-Actualiza docs/security-as-code.md para que el control de "metricas de cobertura de controles" quede explícito y revisable.
+En este paso vas a reforzar `docs/security-as-code.md` como soporte de métricas de cobertura. No basta con listar controles: también importa saber qué parte del dominio cubren, dónde siguen existiendo huecos, qué excepciones alteran la cobertura real y cuál es la siguiente iteración para mejorarla.
 
 ## Archivo y seccion que debes modificar
 
@@ -28,7 +28,8 @@ Este bloque no es para pegar a ciegas: úsalo como punto de partida y ajústalo 
 ## Como adaptarlo correctamente
 
 - Mantén el cambio pequeño y centrado en una sola idea por paso.
-- Usa nombres claros para secciones, reglas o jobs.
+- Usa `## Cobertura actual` para hablar de alcance real y no solo de existencia de controles.
+- Relaciona `## Excepciones activas` con la cobertura efectiva: una excepción abierta también reduce garantía.
 - Evita añadir configuración que no esté relacionada con el objetivo del paso.
 
 ## Que deberia verse al terminar
@@ -36,6 +37,7 @@ Este bloque no es para pegar a ciegas: úsalo como punto de partida y ajústalo 
 - La intención del cambio se entiende leyendo el archivo.
 - El archivo muestra el control sin depender de comentarios ambiguos.
 - Los marcadores esperados del paso aparecen de forma natural en la configuración.
+- El documento ya permite hablar de cobertura del programa con más precisión.
 
 ## Que valida el workflow automaticamente
 
